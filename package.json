@@ -2,13 +2,18 @@
   "name": "tab-boss-sockets-service",
   "version": "1.0.0",
   "description": "A simple web sockets service to integrate with the Tab Boss chrome extension, allowing custom alerts from any source you like.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "repository": "https://github.com/JorgenHookham/tab-boss-socket-service.git",
+  "author": "Jorgen Hookham",
   "license": "ISC",
   "dependencies": {
-    "ws": "^5.0.0"
+    "bufferutil": "3.0.3",
+    "express": "4.16.3",
+    "utf-8-validate": "4.0.0",
+    "ws": "5.0.0"
   }
 }
