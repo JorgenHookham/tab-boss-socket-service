@@ -11,6 +11,7 @@
   "author": "Jorgen Hookham",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "1.18.2",
     "bufferutil": "3.0.3",
     "express": "4.16.3",
     "utf-8-validate": "4.0.0",

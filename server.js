@@ -2,15 +2,18 @@
 
 const express = require('express');
 const SocketServer = require('ws').Server;
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, 'index.html');
 
-const server = express();
-
-server.use((req, res) => res.sendFile(INDEX))
-server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+const server = express()
+	.use(bodyParser.json())
+	.post('/broadcast', (req, res) => {
+		broadcast(req.body.message);
+		res.send('OK');
+	})
+	.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
 
@@ -21,10 +24,11 @@ wss.on('connection', (ws) => {
 
 setInterval(() => {
 	broadcast(new Date().toTimeString());
-}, 1000);
+}, 10000);
 
 function broadcast (data) {
-	wss.clients.forEach((client) => {
+	console.log(data);
+	wss.clients.forEach(function each(client) {
 		client.send(data);
 	});
 }
