@@ -23,7 +23,7 @@ wss.on('connection', (ws) => {
 });
 
 setInterval(() => {
-	broadcast(new Date().toTimeString());
+	broadcast({type: 'checkin', message: new Date().toTimeString()});
 }, 10000);
 
 function broadcast (data) {
