@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const server = express()
 	.use(bodyParser.json())
 	.post('/broadcast', (req, res) => {
-		broadcast(req.body.message);
+		broadcast(req.body);
 		res.send('OK');
 	})
 	.listen(PORT, () => console.log(`Listening on ${ PORT }`));
@@ -34,9 +34,8 @@ setInterval(() => {
 }, 10000);
 
 function broadcast (data) {
-	console.log(data);
+	console.log('Broadcast', data);
 	wss.clients.forEach(function each(client) {
-		console.log(client.secret);
 		client.send(JSON.stringify(data));
 	});
 }
