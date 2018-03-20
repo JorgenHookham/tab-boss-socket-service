@@ -29,6 +29,6 @@ setInterval(() => {
 function broadcast (data) {
 	console.log(data);
 	wss.clients.forEach(function each(client) {
-		client.send(data);
+		client.send(JSON.stringify(data));
 	});
 }
