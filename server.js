@@ -22,6 +22,10 @@ wss.on('connection', (ws) => {
 	ws.on('close', () => console.log('Client disconnected'));
 });
 
+wss.on('message', (data) => {
+	console.log(data);
+});
+
 setInterval(() => {
 	broadcast({type: 'checkin', message: new Date().toTimeString()});
 }, 10000);
