@@ -25,7 +25,7 @@ wss.on('connection', (ws) => {
 	});
 
 	ws.on('message', (data) => {
-		console.log(data);
+		ws.secret = data;
 	});
 });
 
@@ -36,6 +36,7 @@ setInterval(() => {
 function broadcast (data) {
 	console.log(data);
 	wss.clients.forEach(function each(client) {
+		console.log(client.secret);
 		client.send(JSON.stringify(data));
 	});
 }
